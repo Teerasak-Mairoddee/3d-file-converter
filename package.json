@@ -1,0 +1,22 @@
+{
+  "name": "3d-file-converter",
+  "version": "1.0.0",
+  "description": "Browser-only 3D file converter",
+  "scripts": {
+    "vendor": "node scripts/copy-vendor.mjs",
+    "dev": "npm run vendor && vite",
+    "build": "npm run vendor && vite build",
+    "preview": "vite preview"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "assimpjs": "^0.0.10",
+    "fflate": "^0.8.3",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "vite": "^7.3.7"
+  },
+  "private": true,
+  "type": "module"
+}
