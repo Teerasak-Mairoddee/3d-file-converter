@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3D File Converter</title>
+  <meta name="description" content="Convert FBX, GLB, glTF, DAE, 3DS, BLEND, STL, PLY and 40+ other 3D formats to OBJ, GLB, STL and more, entirely in your browser." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 2 29 9v14L16 30 3 23V9z' fill='%236366f1'/><path d='M16 2v28M3 9l13 7 13-7' stroke='white' stroke-width='1.5' fill='none'/></svg>" />
+  <script type="module" crossorigin src="./assets/index-BV1Jf2H_.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CCRRi495.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path d="M16 2 29 9v14L16 30 3 23V9z" fill="var(--accent)"/><path d="M16 2v28M3 9l13 7 13-7" stroke="white" stroke-width="1.5" fill="none"/></svg>
+      <div>
+        <h1>3D File Converter</h1>
+        <p>Convert 3D models in your browser. Files never leave your computer.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel controls">
+      <div id="drop" class="drop" tabindex="0">
+        <strong>Drop a model, a folder, or a .zip here</strong>
+        <span>Include the texture files too (or drop the whole download as a zip).</span>
+        <div class="drop-buttons">
+          <button type="button" id="pickFiles" class="btn">Choose files</button>
+          <button type="button" id="pickFolder" class="btn ghost">Choose folder</button>
+        </div>
+        <input type="file" id="fileInput" multiple hidden />
+        <input type="file" id="folderInput" webkitdirectory multiple hidden />
+      </div>
+
+      <div id="fileSection" class="section" hidden>
+        <div class="row-head">
+          <h2>Files</h2>
+          <button type="button" id="clearBtn" class="link">Clear</button>
+        </div>
+        <ul id="fileList" class="files"></ul>
+        <label class="field" id="mainPick" hidden>
+          <span>Model to convert</span>
+          <select id="mainSelect"></select>
+        </label>
+        <details class="advanced">
+          <summary>Reader</summary>
+          <label class="field">
+            <span>Import engine</span>
+            <select id="engineSelect">
+              <option value="auto">Auto (recommended)</option>
+              <option value="three">three.js loaders</option>
+              <option value="assimp">Assimp (WASM)</option>
+            </select>
+          </label>
+          <p class="hint">If a model looks wrong, try the other engine.</p>
+        </details>
+      </div>
+
+      <div id="outputSection" class="section" hidden>
+        <h2>Convert to</h2>
+        <label class="field">
+          <span>Output format</span>
+          <select id="formatSelect"></select>
+        </label>
+        <div class="grid2">
+          <label class="field">
+            <span>Scale</span>
+            <input type="number" id="scaleInput" value="1" step="any" min="0" />
+          </label>
+          <label class="field">
+            <span>Rotate</span>
+            <select id="rotateSelect">
+              <option value="none">None</option>
+              <option value="zup">Z-up → Y-up</option>
+              <option value="yup">Y-up → Z-up</option>
+              <option value="y180">Turn 180°</option>
+            </select>
+          </label>
+        </div>
+        <div class="presets">
+          <button type="button" class="chip" data-scale="0.01">cm → m (×0.01)</button>
+          <button type="button" class="chip" data-scale="0.001">mm → m (×0.001)</button>
+          <button type="button" class="chip" data-scale="0.0254">in → m (×0.0254)</button>
+          <button type="button" class="chip" data-scale="1">×1</button>
+        </div>
+        <label class="check"><input type="checkbox" id="centerCheck" /> Center on origin and place on ground</label>
+        <button type="button" id="convertBtn" class="btn primary wide">Convert &amp; download</button>
+        <p id="unityTip" class="hint">Unzip and drag the whole folder into your Unity <code>Assets</code> folder so the textures stay next to the OBJ.</p>
+      </div>
+    </section>
+
+    <section class="panel stage">
+      <div id="viewer" class="viewer">
+        <div id="empty" class="empty">
+          <p>Supports FBX, GLB, glTF, OBJ, DAE, 3DS, BLEND, USDZ, STL, PLY, 3MF, X, LWO, AMF, VRML and more.</p>
+        </div>
+        <div id="busy" class="busy" hidden><div class="spinner"></div><span id="busyText">Loading…</span></div>
+        <div class="viewer-tools" id="viewerTools" hidden>
+          <label class="check small"><input type="checkbox" id="wireCheck" /> Wireframe</label>
+          <button type="button" id="frameBtn" class="btn ghost small">Reset view</button>
+        </div>
+      </div>
+      <div id="info" class="info" hidden>
+        <dl id="stats" class="stats"></dl>
+        <ul id="messages" class="messages"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    Powered by <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> and
+    <a href="https://github.com/kovacsv/assimpjs" target="_blank" rel="noopener">assimpjs</a>.
+  </footer>
+
+</body>
+</html>
