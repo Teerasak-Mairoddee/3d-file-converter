@@ -5,6 +5,16 @@ Built mainly for turning free store downloads (FBX, GLB, BLEND, DAE, …) into *
 
 **Live app:** https://teerasak-mairoddee.github.io/3d-file-converter/
 
+![A glTF helmet loaded with its textures, ready to convert](docs/screenshots/preview.png)
+
+## Screenshots
+
+| Converted to OBJ for Unity | Dark mode, with a scale hint for a centimetre-sized FBX |
+| --- | --- |
+| ![Soldier.glb converted to an OBJ zip](docs/screenshots/converted.png) | ![Samba Dancing.fbx in dark mode](docs/screenshots/dark.png) |
+
+<p align="center"><img src="docs/screenshots/mobile.png" alt="The app on a phone" width="300"></p>
+
 ## Using it
 
 1. Drop the model onto the page. Include its textures: drop the whole folder, select all the files, or drop the store's `.zip` as-is.
